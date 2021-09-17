@@ -1,0 +1,327 @@
+%%%*******************************************************************************
+%  Classe Latex UEFS PPGM, Version 1.0.1 13/09/2021
+%
+%  Define as normas e estilo das dissertações e teses do PPGM-UEFS
+%
+%  Author : Gilney Zebende
+%  Contribuição : João Paulo Just Peixoto <joao.just@ifba.edu.br,just1982@gmail.com>
+%%%-------------------------------------------------------------------------------
+
+
+%%%-------------------------------------------------------------------------------
+%  DOCUMENTAÇÃO COM EXEMPLOS
+%%%*******************************************************************************
+
+%%%-------------------------------------------------------------------------------
+%%% Thesis default options
+%%%-------------------------------------------------------------------------------
+%\documentclass[subook]{Classes/PPGM-UEFS}
+%\documentclass[sureport]{Classes/PPGM-UEFS}
+
+%%%-------------------------------------------------------------------------------
+%%% Thesis custom options
+%%%-------------------------------------------------------------------------------
+
+%%% Fancy page headings
+%\documentclass[fancyheadings, subook]{Classes/PPGM-UEFS}
+%\documentclass[fancyheadings, sureport]{Classes/PPGM-UEFS}
+
+%%% Fancy chapters and sections headings
+%\documentclass[fancychapter, subook]{Classes/PPGM-UEFS}
+%\documentclass[fancychapter, sureport]{Classes/PPGM-UEFS}
+
+%%% Fancy page , chapters and sections headings
+%\documentclass[fancyheadings, fancychapter, subook]{Classes/PPGM-UEFS}
+\documentclass[fancyheadings, fancychapter, sureport]{Classes/PPGM-UEFS}
+
+
+%%%-------------------------------------------------------------------------------
+%%% Thesis Commands (ONLY with fancy page headings)
+%%%-------------------------------------------------------------------------------
+
+%%%Page header line width
+%\footlinewidth{value}
+
+%%%Page footer line width
+%\headlinewidth{value}
+
+%%%Page header and footer line width
+%\headingslinewidth{value}
+
+%%%Page header and footer lines without text
+%\headingslinesonly
+
+%%%The default line width is 0.3pt.
+%%%Set the value to 0pt to remove the page header and/or footer line
+
+%%%-------------------------------------------------------------------------------
+%%% SUThesis Supported Graphic Formats
+%%%-------------------------------------------------------------------------------
+% The figures formats supported depend upon the selected output file
+% Include your figure without the extention, the SUThesis will automatically
+% search the predefined `Figures' directory tree for the right file format.
+%
+% - The pdfLaTEX (PDF) supports graphics inclusions in PDF, JPG, PNG, and
+%   MetaPost (with .mps extention) formats.
+%
+% - The Latex (DVI) supports graphics inclusions in EPS and PS formats.
+%%%-------------------------------------------------------------------------------
+
+
+%%%-------------------------------------------------------------------------------
+%%% Árvore de diretório PPGM-UEFS
+%%%-------------------------------------------------------------------------------
+%  Diretorio
+%       \Classes        (requerido)
+%       \Figures        (requerido) --------------------------------->
+%       \Figures\PDF    (opcional)
+%       \Figures\JPG    (opcional) Figuras nestas pastas
+%       \Figures\PNG    (opcional) são buscadas automaticamente
+%       \Figures\MPS    (opcional) pela classe PPGM-UEFS.
+%       \Figures\EPS    (opcional)
+%       \Figures\PS     (opcional) <--------------------------------
+%       \Tables         (requerido)
+%       \Others         (requerido)
+%       \Chapters       (requerido)
+%       \Appendices     (opcional)
+%       \References     (requerido)
+%%%-------------------------------------------------------------------------------
+
+%%%-------------------------------------------------------------------------------
+%%% Funções auxiliares (não mude isso)
+%%%-------------------------------------------------------------------------------
+\newcommand{\nth}[2]{
+    \foreach \x [count=\k] in #1 {
+        \ifnum\k=#2
+            \x
+        \fi
+    }
+}
+
+\makeatletter
+\newcommand*\ppgmbancalist{}
+\newcommand*\ppgmbancaextlist{}
+\newcommand*\ppgmbanca[2]{
+    \g@addto@macro\ppgmbancalist{{#1,#2},}
+}
+\newcommand*\ppgmbancaext[2]{
+    \g@addto@macro\ppgmbancaextlist{{#1,#2},}
+}
+\makeatother
+
+%%%-------------------------------------------------------------------------------
+%%% Dados da tese/dissertação
+%%%-------------------------------------------------------------------------------
+\newif\ifdoutor
+\newif\ifcoor
+
+%% Primeiro indique se é uma tese de doutorado ou dissertação de mestrado:
+\doutortrue     % Para tese de doutorado
+%\doutorfalse   % Para dissertação de mestrado
+
+%% Indique também se tem co-orientador
+\coortrue       % Tenho co-orientador
+%\coorfalse     % Não tenho co-orientador
+
+%% Preencha as informações abaixo
+\newcommand{\ppgmtitulo}       {Título da Dissertação ou Tese}
+\newcommand{\ppgmsubtitulo}    {Sub-título da Dissertação ou Tese}
+\newcommand{\ppgmautor}        {Nome do(a) autor(a)}
+\newcommand{\ppgmorientador}   {Nome do(a) orientador(a)}
+\newcommand{\ppgmcoorientador} {Nome do(a) co-orientador(a)}
+\newcommand{\ppgmcooruniv}     {UNIVERSIDADE ESTADUAL DE FEIRA DE SANTANA} % Instituição do co-orientador
+\newcommand{\ppgmpalavraschave}{palavra-chave1, palavra-chave2, palavra-chave3}
+\newcommand{\ppgmkeywords}     {keyword1, keyword2, keyword3}
+\newcommand{\ppgmdia}          {Dia}
+\newcommand{\ppgmmes}          {Mês}
+\newcommand{\ppgmano}          {Ano}
+\newcommand{\ppgmcidade}       {Feira de Santana, BA}
+
+%% Indique os membros internos da banca (nome e instituição)
+% É possível acrescentar membros copiando o comando
+\ppgmbanca{Prof. Dr. Fulano}{\ppgmcooruniv}
+\ppgmbanca{Profa. Dra. Beltrana}{\ppgmcooruniv}
+
+%% Indique os membros externos da banca (nome e instituição)
+\ppgmbancaext{Prof. Dr. Ciclano}{INSTITUTO FEDERAL DA BAHIA}
+\ppgmbancaext{Profa. Dra. Fulana}{UNIVERSIDADE FEDERAL DA BAHIA}
+
+
+%%%-------------------------------------------------------------------------------
+%%% Sumário do PDF
+%%%-------------------------------------------------------------------------------
+\ifdoutor
+    \newcommand{\ppgmsubject}{Tese de Doutorado em Modelagem em Ciências da Terra e do Ambiente}
+\else
+    \newcommand{\ppgmsubject}{Dissertação de Mestrado em Modelagem em Ciências da Terra e do Ambiente}
+\fi
+
+\ifpdf
+    \hypersetup{backref,
+                colorlinks  = true,
+                pdftitle    = \ppgmtitulo,
+                pdfauthor   = \ppgmautor,
+                pdfsubject  = \ppgmsubject,
+                pdfcreator  = PPGM-UEFS,
+                pdfproducer = PDFLatex,
+                pdfkeywords = \ppgmpalavraschave
+    }
+\fi
+
+%%%-------------------------------------------------------------------------------
+%%% Required packages
+%%%-------------------------------------------------------------------------------
+% - ifthen
+% - setspace
+% - amsmath
+% - amsfonts
+% - amssymb
+% - amsthm
+% - eucal
+% - graphics
+% - fancyhdr
+%%%-------------------------------------------------------------------------------
+
+%%%-------------------------------------------------------------------------------
+%%% Optional packages
+%%%-------------------------------------------------------------------------------
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{graphicx}
+\usepackage{float,subfigure}
+\usepackage{cite}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{listings}
+\usepackage{lipsum}
+
+%\usepackage{abntex2cite}
+\usepackage[alf]{abntex2cite}
+
+\usepackage[left=3cm,top=3cm,right=2cm,bottom=2cm]{geometry}
+\usepackage{ifpdf}
+% Tables and Figures Caption
+\setlength{\LTcapwidth}{\textwidth}
+
+%\newtheorem{theorem}{Teorema}
+%\newtheorem{definition}[theorem]{Defini\c{c}\~ao}
+
+\usepackage{hyperref}
+
+% Traduz os títulos dos algoritmos
+\makeatletter
+\renewcommand{\ALG@name}{Algoritmo}
+\renewcommand{\listalgorithmname}{Lista de  \ALG@name s}
+\renewcommand{\algorithmicrequire}{\textbf{Entrada:}}
+\renewcommand{\algorithmicensure}{\textbf{Saída:}}
+\makeatother
+
+%%%-------------------------------------------------------------------------------
+%%% Documento raiz da tese/dissertação
+%%%-------------------------------------------------------------------------------
+\begin{document}
+    %%----------------------------------------------------------------------------
+    %% Página de título
+    %%----------------------------------------------------------------------------
+    % Informações da capa. Não é preciso mudar nada aqui.
+    \university{UNIVERSIDADE ESTADUAL DE FEIRA DE SANTANA}
+    \faculty{Programa de Pós-graduação em Modelagem em Ciências da Terra e do Ambiente}
+    
+    \ifdoutor
+        \course{Doutorado em Modelagem em Ciências da Terra e do Ambiente}
+        \typework{Tese de doutorado}
+        \thesisdegreetitle{Doutor em Modelagem em Ciências Ambientais}
+    \else
+        \course{Mestrado em Modelagem em Ciências da Terra e do Ambiente}
+        \typework{Dissertação de Mestrado}
+        \thesisdegreetitle{Mestre em Mestre em Ciências Ambientais}
+    \fi
+    
+    \thesistitle{\ppgmtitulo}
+    \hidevolume
+    \thesisvolume{Volume 1 de 1}
+    \thesisauthor{\ppgmautor}
+    \thesisadvisor{\ppgmorientador}
+    \ifcoor
+        % Caso não queira exibir o nome do(a) co-orientador(a), habilite a linha abaixo:
+        %\hidecoadvisor 
+        \thesiscoadvisor{\ppgmcoorientador}
+    \fi
+    \thesismonthyear{\ppgmmes\space de \ppgmano}
+    \maketitlepage
+
+    %%----------------------------------------------------------------------------
+    %% Inserir Folha de rosto, Nota de estilo, folha de assinaturas, dedicatória
+    %%----------------------------------------------------------------------------
+    % Comente qualquer linha que não queira inserir
+    \include{Others/FolhaRosto}
+    \include{Others/NotaEstilo}
+    \include{Others/FolhaAssinaturas}
+    \include{Others/Dedicatoria}
+    \include{Others/Agradecimentos}
+
+    %%----------------------------------------------------------------------------
+    %% Resumo/abstract, sumário e siglas
+    %%----------------------------------------------------------------------------
+    % Comente qualquer linha que não queira inserir
+    \begin{romanpagenumbers}
+        % Resumo e abstract
+        \include{Others/Resumo}
+        \include{Others/Abstract}
+        
+        % Sumários
+        \thesiscontents
+        
+        % Lista de algoritmos (remova se seu texto não possuir algoritmos)
+        \listofalgorithms
+        
+        % Abreviações
+        \include{Others/Siglas}
+
+        % Volta à numeração de página padrão
+    \end{romanpagenumbers}
+
+    %%----------------------------------------------------------------------------
+    %% Inclui capítulos da tese/dissertação
+    %%----------------------------------------------------------------------------
+    \parskip=\baselineskip
+    % Comente qualquer linha que não queira inserir
+    \include{Chapters/Capitulo01}
+    \include{Chapters/Capitulo02}
+    \include{Chapters/Capitulo03}
+    \include{Chapters/Capitulo04}
+    % Caso precise de mais capítulos, basta criar novos arquivos e acrescentá-los
+    % aqui seguindo o modelo acima
+
+    %%----------------------------------------------------------------------------
+    %% Inclui anexos
+    %%----------------------------------------------------------------------------
+    % Comente qualquer linha que não queira inserir
+    \begin{thesisappendices}
+        \include{Appendices/AnexoI}
+        % Caso precise de mais anexos, basta criar novos arquivos e acrescentá-los
+        % aqui seguindo o modelo acima
+    \end{thesisappendices}
+
+    %%----------------------------------------------------------------------------
+    %% Configurar as referencias bibliográficas
+    %%----------------------------------------------------------------------------
+    \addcontentsline{toc}{chapter}{Referências}
+    %\bibliographystyle{abntex2}
+    %\bibliographystyle{unsrt}
+    %\bibliographystyle{abnt}
+    \bibliography{References/referencias}
+    
+    %%----------------------------------------------------------------------------
+    %% Finalização
+    %%----------------------------------------------------------------------------
+    \include{Others/UltimaFolha}
+\end{document}
+
+%%%-------------------------------------------------------------------------------
+%%% Aqui finalizamos a formatação. Faça um bom trabalho.
+%%%-------------------------------------------------------------------------------

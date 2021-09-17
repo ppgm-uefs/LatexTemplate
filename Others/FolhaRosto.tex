@@ -1,0 +1,67 @@
+%==========================================================
+%        Document: PPGM-UEFS
+%        File....: FolhaRosto.TEX
+%        Author..: Gilney Zebende, João Paulo Just Peixoto
+%        Date....: 13 de setembro de 2021
+%==========================================================
+\begin{folharosto}
+
+\begin{center}
+\theauthor
+\end{center}
+\ \\
+\ \\
+\ \\
+\ \\
+\ \\
+\begin{spacing}{2}
+   \begin{center}
+   {\LARGE {\bf \thetitle}}
+   \end{center}
+\end{spacing}
+\ \\
+\ \\
+\ \\
+\begin{flushright}
+
+   \begin{list}{}{
+      \setlength{\leftmargin}{4.5cm}
+      \setlength{\rightmargin}{0cm}
+      \setlength{\labelwidth}{0pt}
+      \setlength{\labelsep}{\leftmargin}}
+
+      \item \thetypework apresentada ao \thefaculty, Curso de \thecourse
+      da \theuniversity, como requisito parcial para a obtenção do
+      título de {\bf \thedegreetitle}.
+
+    \begin{list}{}{
+      \setlength{\leftmargin}{0cm}
+      \setlength{\rightmargin}{0cm}
+      \setlength{\labelwidth}{0pt}
+      \setlength{\labelsep}{\leftmargin}}
+
+      \item Área de conhecimento: Estudos Ambientais e Geotecnologias
+
+      \item Orientador: Dr. \theadvisor
+      \newline \hspace*{2.1cm}  {\footnotesize {\it \theuniversity}}
+      
+      \ifcoor
+          \item Co-orientador: Dr. \thecoadvisor
+          \newline \hspace*{2.1cm}  {\footnotesize \emph{\ppgmcooruniv}}
+      \fi
+      \end{list}
+   \end{list}
+
+\end{flushright}
+
+\vspace*{\fill}
+
+%\begin{spacing}{1.5}
+   \begin{center}
+   \ppgmcidade \par
+   \theuniversity \par
+   \ppgmano
+   \end{center}
+%\end{spacing}
+
+\end{folharosto}
