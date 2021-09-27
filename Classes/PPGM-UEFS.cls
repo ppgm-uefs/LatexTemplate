@@ -752,3 +752,15 @@
     \setcounter{page}{1}
     \renewcommand{\thepage}{\roman{page}}}
     {\newpage\renewcommand{\thepage}{\arabic{page}}\setcounter{page}{1}}
+
+%------------------------------------------------------------------------
+% AMBIENTE PARA OS QUADROS
+%------------------------------------------------------------------------
+\usepackage{newfloat}
+\DeclareFloatingEnvironment[
+    fileext=loq,
+    listname={Lista de Quadros},
+    name=Quadro,
+    placement=tbhp,
+    within=none,
+]{quadro}

@@ -225,6 +225,51 @@ Criar tabelas manualmente no \LaTeX\space pode ser complicado, por isso, recomen
     Fonte: \emph{Internet.}
 \end{table}
 
+\section{Quadros}
+\label{sec:quadros}
+
+Os quadros são como as tabelas, porém, possuem todas as linhas de bordas (diferente da tabela, que segue um padrão do IBGE, o quadro é todo fechado).
+
+O funcionamento é o mesmo das tabelas, porém, iremos usar o ambiente \verb=quadro=, conforme abaixo:
+
+\begin{verbatim}
+    \begin{quadro}
+        \centering
+        \caption{Datas das publicações}
+        \label{qua:publicacoes}
+        \begin{tabular}{|c|c|}
+            \hline
+            \textbf{Título}                     & \textbf{Ano} \\
+            \hline
+            Emergências em cidades: uma revisão & 2021 \\
+            \hline
+            Propostas para mobilidade urbana    & 2022 \\
+            \hline
+        \end{tabular}
+        \linebreak
+        Fonte: \emph{Internet}.
+    \end{quadro}
+\end{verbatim}
+
+\begin{quadro}
+    \centering
+    \caption{Datas das publicações}
+    \label{qua:publicacoes}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Título}                     & \textbf{Ano} \\
+        \hline
+        Emergências em cidades: uma revisão & 2021 \\
+        \hline
+        Propostas para mobilidade urbana    & 2022 \\
+        \hline
+    \end{tabular}
+    \linebreak
+    Fonte: \emph{Internet}.
+\end{quadro}
+
+Assim como no caso das tabelas, será criada uma lista de quadros no início do documento.
+
 \section{Equações}
 \label{sec:equacoes}
 
